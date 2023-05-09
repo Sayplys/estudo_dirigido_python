@@ -22,7 +22,6 @@ print(len(nome), type(len(nome)))
 NOME_INVALIDO = len(nome) < 3 
 if NOME_INVALIDO:
     print('Nome com no mínimo 3 caracteres')
-    pass
 else:
     print('Nome valido')
 
