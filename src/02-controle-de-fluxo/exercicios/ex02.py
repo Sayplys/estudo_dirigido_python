@@ -9,4 +9,15 @@ for nota in notas:
 
 media = total / len(notas)
 
-print(media)
+print(f'media: {media}')
+
+if media > 10:
+    print("Inválido")
+if media > 6:
+    print("Aprovado")
+elif media > 4:
+    print("Recuperação")
+elif media > 0:
+    print("reprovado")
+else:
+    print("Inválido")
