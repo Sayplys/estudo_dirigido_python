@@ -1,0 +1,5 @@
+00392,professore,carlos
+34728,professore,taína
+34200,coodernado,paulo
+83473,alune,sofia
+23413,alune,luan
