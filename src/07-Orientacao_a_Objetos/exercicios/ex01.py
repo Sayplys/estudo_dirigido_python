@@ -16,6 +16,26 @@ class Aluno:
             raise ValueError("Sem informações do prontuario")
         self._prontuario = value
 
+    @property
+    def nome(self):
+        return self._nome
+
+    @nome.setter
+    def nome(self, value):
+        if value == '':
+            raise ValueError("Sem informações do nome")
+        self._nome = value
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, value):
+        if value == '':
+            raise ValueError("Sem informações do email")
+        self._email = value
+
     def __str__(self):
         return f'Aluno: {self.nome}, prontuario: {self.prontuario}, email: {self.email}'
 
@@ -32,6 +52,6 @@ class Aluno:
     
 aluno = Aluno('13434', 'pedro da silva', 'pedro@gmail.com')
 aluno1 = Aluno('2345245', 'pedro', 'pedro@gmail.com')
-aluno2 = Aluno('523452', 'adfadf', 'afdsj@gmail.com')
+aluno2 = Aluno('523452', 'akfaf', 'afdsj@gmail.com')
 
 print(aluno)
