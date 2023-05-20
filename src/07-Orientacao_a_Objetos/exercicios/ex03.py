@@ -1,12 +1,12 @@
 """ Ex . 3 """
 
-class Participação:
-    def __init__(self, codigo, data_inicio, data_fim, aluno, projeto):
+class Participacao:
+    def __init__(self, codigo, data_inicio, data_fim, aluno):
         self.codigo = codigo
         self.data_inicio = data_inicio
         self.data_fim = data_fim
         self.aluno = aluno
-        self.projeto = projeto
+        self.projeto = []
 
     def __eq__(self,value):
         if isinstance(value, self.__class__):
@@ -17,15 +17,14 @@ class Participação:
         return self.codigo
 
     def __str__(self):
-        participante_infos = (
-            self.codigo, 
-            self.data_inicio, 
-            self.data_fim,
-            self.aluno,
-            self.projeto
-        )
+        participante_infos = {
+            'codigo' : self.codigo,
+            'data de inicio': self.data_inicio, 
+            'data de fim': self.data_fim,
+            'aluno': self.aluno,
+            'projeto': self.projeto
+        }
         return f'{participante_infos}'
-
-participante = Participação('34132', '05/02', '05/12', 'paula', 'aula')
-
-print(participante)
+    
+    def add_projeto(self, projeto):
+        self.projeto.append(projeto)

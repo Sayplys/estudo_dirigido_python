@@ -5,6 +5,7 @@ class Projeto:
         self.codigo = codigo
         self.titulo = titulo
         self.responsavel = responsavel
+        self.participacoes = []
     
     @property
     def codigo(self):
@@ -37,7 +38,10 @@ class Projeto:
         self._responsavel = value 
 
     def __str__(self):
-        return f'codigo={self.codigo}, titulo={self.titulo}, responsável={self.responsavel}'
+        participantes = ''
+        for participante in self.participacoes:
+            participantes += f'{participante};'
+        return f'\ncodigo={self.codigo},\ntitulo={self.titulo},\nresponsável={self.responsavel},\nparticipacao={participantes}\n'
 
     def __repr__(self):
         return f'{self.codigo},{self.titulo},{self.responsavel}'
@@ -49,8 +53,6 @@ class Projeto:
     
     def __hash__(self):
         return self.codigo
-
-projeto1 = Projeto('123123','aula','thiago')
-projeto2 = Projeto('123123','nada','marilia')
-
-print(projeto1)
+    
+    def add_participacao(self, participacao):
+        self.participacoes.append(participacao)
