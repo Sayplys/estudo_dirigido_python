@@ -47,7 +47,7 @@ class Projeto:
             return self.codigo == value.codigo
         return False
     
-    def __hash__(self) -> int:
+    def __hash__(self):
         return self.codigo
 
 projeto1 = Projeto('123123','aula','thiago')
