@@ -1,14 +1,12 @@
 """ Ex. 01 """
 
+from ex03 import linha_para_dict
+
 def carregar_dados_alunos(arquivo):
-    dados = []
-    for linha in arquivo.readlines():
-        linha = linha.strip()
-        dados.append(linha.split(','))
-    
     dados_dos_alunos = []
-    for dado in dados:
-        dados_dos_alunos += [{'prontuario': dado[0], 'nome': dado[1], 'email': dado[2]}]
+    chaves = ['prontuario', 'nome', 'email']
+    for linha in arquivo.readlines():
+        dados_dos_alunos.append(linha_para_dict(linha.strip(),chaves))
 
     return tuple(dados_dos_alunos)
 

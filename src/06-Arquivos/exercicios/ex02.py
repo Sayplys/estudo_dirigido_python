@@ -1,14 +1,12 @@
 """ Ex.02 """
 
-def carregar_dados_projetos(arquivo):
-    dados = []
-    for linha in arquivo.readlines():
-        linha = linha.strip()
-        dados.append(linha.split(','))
+from ex03 import linha_para_dict
 
+def carregar_dados_projetos(arquivo):
     dados_dos_projetos = []
-    for dado in dados:
-        dados_dos_projetos.append({'código': dado[0], 'titulo': dado[1], 'responsável': dado[2]})
+    chaves = ['codigo','titulo','responsavel']
+    for linha in arquivo.readlines():
+        dados_dos_projetos.append(linha_para_dict(linha.strip(), chaves))
 
     return tuple(dados_dos_projetos)
 
