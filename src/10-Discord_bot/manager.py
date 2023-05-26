@@ -4,11 +4,7 @@ from discord.ext.commands.errors import MissingRequiredArgument, CommandNotFound
 class Manager(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print(f"Estou conectado como {self.bot.user}")
-
+        
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, MissingRequiredArgument):
@@ -28,7 +24,5 @@ class Manager(commands.Cog):
             await message.channel.send(f'Por favor, {message.author}, não ofenda os demais usuários!')
             await message.delete()
 
-        await self.bot.process_commands(message)
-
-def setup(bot):
-    bot.add_cog(Manager(bot))
+async def setup(bot):
+    await bot.add_cog(Manager(bot))

@@ -14,11 +14,7 @@ class Dates(commands.Cog):
 
         await channel.send("Data atual: " + now)
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        self.current_time.start()
-
-
-
-def setup(bot):
-    bot.add_cog(Dates(bot))
+    
+async def setup(bot):
+    await bot.add_cog(Dates(bot))
+    

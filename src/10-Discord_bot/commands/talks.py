@@ -24,5 +24,5 @@ class Talks(commands.Cog):
             await ctx.send("Não posso te contar o segredo, habilite a opção para receber mensagem no privado.")
 
 
-def setup(bot):
-    bot.add_cog(Talks(bot))
+async def setup(bot):
+    await bot.add_cog(Talks(bot))

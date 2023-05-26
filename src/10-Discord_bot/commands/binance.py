@@ -23,5 +23,5 @@ class Binance(commands.Cog):
             await ctx.send("Deu errado sua requisição")
             print(error)       
 
-def setup(bot):
-    bot.add_cog(Binance(bot))
+async def setup(bot):
+    await bot.add_cog(Binance(bot))

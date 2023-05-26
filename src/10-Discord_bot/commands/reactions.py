@@ -16,5 +16,5 @@ class Reactions(commands.Cog):
             role = user.guild.get_role(1111363956037132369)
             await user.add_roles(role)
 
-def setup(bot):
-    bot.add_cog(Reactions(bot))
+async def setup(bot):
+    await bot.add_cog(Reactions(bot))
