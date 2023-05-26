@@ -19,7 +19,7 @@ class Image(commands.Cog):
         )
 
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar)
-        embed.set_footer(text="Feito por" + self.bot.user.name, icon_url=self.bot.user.avatar)
+        embed.set_footer(text="Feito por " + self.bot.user.name, icon_url=self.bot.user.avatar)
 
         embed.add_field(name="API", value=f"Usamos a API do {url_image}")
         embed.add_field(name="Parâmetros", value=f"{largura}/{altura}")

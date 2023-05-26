@@ -21,8 +21,8 @@ class Cadastro(commands.Cog):
         await ctx.send("Checando ocorrência...")
         for index, line in enumerate(lines):
             line_data = line.strip().split(',')
-            if len(line_data) != 3:
-                dados_data = dados.strip().split(',')
+            dados_data = dados.strip().split(',')
+            if len(dados_data) == 3:     
                 if line_data[0] == dados_data[0] and line_data[2] == dados_data[2]:
                     if line_data[0] == dados_data[0]:
                         await ctx.send("Já existe um aluno cadastrado com esse prontuário. Por favor indique outro.")
@@ -32,11 +32,14 @@ class Cadastro(commands.Cog):
                 elif index == len(lines)-1:
                     await self.add_to_data_base(ctx, dados)
             else:
-                await ctx.send("Por favor mande todas as informações: prontuário nome email.")
+                await ctx.send("Por favor mande as informações: prontuário nome email." + 
+                               " Caso nome composto adicionar entre aspas."
+                               )
+                break
 
     async def add_to_data_base(self, ctx, dados):
         with open("src/10-Discord_bot/alunos/alunos.txt", 'a', encoding='UTF-8') as arquivo_a:
-            arquivo_a.write(dados + '\n')
+            arquivo_a.write( dados +"\n")
             await ctx.send("Cadastrado com sucesso.")
 
 async def setup(bot):
