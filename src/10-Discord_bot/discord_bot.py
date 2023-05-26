@@ -17,9 +17,8 @@ async def on_ready():
 
 async def load_cogs(bot): 
     await bot.load_extension('manager')
-    print('manage')
     await bot.load_extension('tasks.dates')
-    print("tasks")
+    await bot.load_extension('alunos.cadastrar')
     for file in os.listdir("src/10-Discord_bot/commands"):
         if file.endswith(".py"):
             await bot.load_extension(f"commands.{file[:-3]}")

@@ -16,7 +16,7 @@ class Talks(commands.Cog):
         print(response)
         await ctx.channel.send(response)
 
-    @commands.command(name="segredo", help="Manda um segro no pv")
+    @commands.command(name="segredo", help="Manda um segredo no pv")
     async def secret(self, ctx):
         try:
             await ctx.author.send("Comi o cu de curioso")
