@@ -1,5 +1,6 @@
 from discord.ext import commands
 import discord
+from discord import app_commands
 
 
 class Talks(commands.Cog):
@@ -9,20 +10,19 @@ class Talks(commands.Cog):
         self.bot = bot
 
 
-    @commands.command(name='oi', help="Manda um oi")
-    async def send_hi(self, ctx):
-        name = ctx.author.name
+    @app_commands.command(name='oi', description="Manda um oi")
+    async def send_hi(self, interaction: discord.Interaction):
+        name = interaction.user.name
         response = 'Salve, ' + name
-        print(response)
-        await ctx.channel.send(response)
+        await interaction.channel.send(response)
 
-    @commands.command(name="segredo", help="Manda um segredo no pv")
-    async def secret(self, ctx):
+    @app_commands.command(name="segredo", description="Manda um segredo no pv")
+    async def secret(self, interaction: discord.Interaction):
         try:
-            await ctx.author.send("Comi o cu de curioso")
+            await interaction.user.send("Comi o cu de curioso")
         except discord.errors.forbidden:
-            await ctx.send("Não posso te contar o segredo, habilite a opção para receber mensagem no privado.")
+            await interaction.send("Não posso te contar o segredo, habilite a opção para receber mensagem no privado.")
 
 
 async def setup(bot):
-    await bot.add_cog(Talks(bot))
+    await bot.add_cog(Talks(bot),  guilds=[discord.Object(id=1110550192534589543)])

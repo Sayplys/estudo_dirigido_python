@@ -2,13 +2,14 @@
 
 from discord.ext import commands
 import discord
+from discord import app_commands
 
 class Listar(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="ls-aluno", help="Lista de alunos (!ls-alunos)")
-    async def listar(self, ctx):
+    @app_commands.command(name="ls-aluno", description="Lista de alunos")
+    async def listar(self,interaction: discord.Interaction):
 
         embed = discord.Embed(
             title="Lista de alunos",
@@ -28,8 +29,8 @@ class Listar(commands.Cog):
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar)
         embed.set_footer(text="Feito por " + self.bot.user.name, icon_url=self.bot.user.avatar)
 
-        await ctx.send(embed=embed)            
+        await interaction.response.send_message(embed=embed)            
 
 
 async def setup(bot):
-    await bot.add_cog(Listar(bot))
+    await bot.add_cog(Listar(bot),  guilds=[discord.Object(id=1110550192534589543)])

@@ -1,5 +1,7 @@
 from discord.ext import commands
 import re
+from discord import app_commands
+import discord
 
 class Calculator(commands.Cog):
     """ Fala com o usuario """
@@ -7,49 +9,21 @@ class Calculator(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="calcular", help="Calculadora (!calcular x+(2-3)+4x9/2")
-    async def calculate_expression(self, ctx, *message):
+    @app_commands.command(name="calcular", description="Calculadora")
+    async def calculate_expression(self,interaction: discord.Interaction, message: str):
         expression = ''.join(message)
-        numeros = re.split(r"[+ x / ( ) -]+", expression)
-            
-        signals_input = []
-        for char in expression:
-            if char == '+' or char == 'x' or char == '/' or char == '-' or char == '(' or char == ')':
-                if char == 'x':
-                    signals_input.append('*')
-                    continue
-                signals_input.append(char)
+        numeros = re.split(r"[+ x / ( ) -]+", expression)           
 
-        math = ''
-
-        for indice, numero in enumerate(numeros):
-            try:
+        try:
+            for numero in numeros:
                 int(numero)
-                if indice < len(numeros) - 1:
-                    if indice < len(numeros) - 2:
-                        if signals_input[indice + 1] == '(':
-                                math += f'{numero}{signals_input[indice]}('
-                                signals_input.remove('(')
-                        elif signals_input[indice] == ')':
-                                math += f'{numero}){signals_input[indice + 1]}'
-                                signals_input.remove(')')
-                        else:
-                                math += f'{numero}{signals_input[indice]}'
-                    else:
-                        math += f'{numero}{signals_input[indice]}'
-                else:
-                    math += f'{numero}'
-            except ValueError:
-                await ctx.send('Por favor, mande uma conta válida.')
-                return
-            
-        response = eval(math)
-        
-        # response = eval(math)
+            response = eval(expression)
+        except ValueError:
+            await interaction.response.send_message('Por favor, mande uma conta válida.')
+            return
 
-        await ctx.send('A resposta é: ' +  str(response))
-
+        await interaction.response.send_message('A resposta é: ' +  str(response))
 
 
 async def setup(bot):
-    await bot.add_cog(Calculator(bot))
+    await bot.add_cog(Calculator(bot),  guilds=[discord.Object(id=1110550192534589543)])

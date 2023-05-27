@@ -1,5 +1,7 @@
 from discord.ext import commands
 import requests
+from discord import app_commands
+import discord
 
 class Binance(commands.Cog):
     """ Fala com o usuario """
@@ -8,20 +10,20 @@ class Binance(commands.Cog):
         self.bot = bot
 
 
-    @commands.command(name="moeda", help="Mostra cotações de acordo com os dados da binance (!moeda xxx xxx)")
-    async def binance(self, ctx, coin, base):
+    @app_commands.command(name="moeda", description="Mostra cotações de acordo com os dados da binance")
+    async def binance(self, interaction: discord.Interaction, coin: str, base: str):
         try:
             response = requests.get(f"https://api.binance.com/api/v3/ticker/price?symbol={coin.upper()}{base.upper()}")
             data = response.json()
             price = data.get("price")
 
             if price:
-                await ctx.send(f"O valor do par {coin}/{base} é {price}")
+                await interaction.response.send_message(f"O valor do par {coin}/{base} é {price}")
             else:
-                await ctx.send(f"O valor do par {coin}/{base} é invalido")
+                await interaction.response.send_message(f"O valor do par {coin}/{base} é invalido")
         except Exception as error:
-            await ctx.send("Deu errado sua requisição")
+            await interaction.response.send_message("Deu errado sua requisição")
             print(error)       
 
 async def setup(bot):
-    await bot.add_cog(Binance(bot))
+    await bot.add_cog(Binance(bot),  guilds=[discord.Object(id=1110550192534589543)])

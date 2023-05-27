@@ -3,6 +3,7 @@
 from discord.ext import commands
 from decouple import config
 import discord, os
+from discord import app_commands
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -26,6 +27,7 @@ async def load_cogs(bot):
     for file in os.listdir("src/10-Discord_bot/commands"):
         if file.endswith(".py"):
             await bot.load_extension(f"commands.{file[:-3]}")
+
 
 TOKEN = config("TOKEN")
 bot.run(TOKEN)

@@ -1,5 +1,6 @@
 from discord.ext import commands
 import discord
+from discord import app_commands
 
 
 class Image(commands.Cog):
@@ -8,8 +9,8 @@ class Image(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="foto", help="Manda uma foto aleatória (!foto largura altura)")
-    async def get_random_image(self, ctx, largura, altura):
+    @app_commands.command(name="foto", description="Manda uma foto aleatória")
+    async def get_random_image(self, interaction: discord.Interaction, largura: int, altura: int):
         url_image = f"https://loremflickr.com/{largura}/{altura}"
 
         embed = discord.Embed(
@@ -28,7 +29,7 @@ class Image(commands.Cog):
 
         embed.set_image(url=url_image)
 
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
 async def setup(bot):
-    await bot.add_cog(Image(bot))
+    await bot.add_cog(Image(bot),  guilds=[discord.Object(id=1110550192534589543)])

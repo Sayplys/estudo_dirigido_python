@@ -1,5 +1,7 @@
 from discord.ext import commands
 from discord.ext.commands.errors import MissingRequiredArgument, CommandNotFound
+import discord
+from discord import app_commands
 
 class Manager(commands.Cog):
     def __init__(self,bot):
@@ -23,6 +25,11 @@ class Manager(commands.Cog):
         if 'palavrão' in message.content:
             await message.channel.send(f'Por favor, {message.author}, não ofenda os demais usuários!')
             await message.delete()
+
+    @commands.command()
+    async def sync(self, ctx):
+        fmt = await self.bot.tree.sync(guild=ctx.guild)
+        await ctx.send(f'Sync {len(fmt)}')
 
 async def setup(bot):
     await bot.add_cog(Manager(bot))
