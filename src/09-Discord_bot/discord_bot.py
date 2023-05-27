@@ -21,11 +21,11 @@ async def load_cogs(bot):
     await bot.load_extension('manager')
     await bot.load_extension('tasks.dates')
     
-    for file in os.listdir("src/10-Discord_bot/alunos"):
+    for file in os.listdir("src/09-Discord_bot/alunos"):
         if file.endswith(".py"):
             await bot.load_extension(f'alunos.{file[:-3]}')
 
-    for file in os.listdir("src/10-Discord_bot/commands"):
+    for file in os.listdir("src/09-Discord_bot/commands"):
         if file.endswith(".py"):
             await bot.load_extension(f"commands.{file[:-3]}")
 
