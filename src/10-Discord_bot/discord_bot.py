@@ -3,7 +3,7 @@
 from discord.ext import commands
 from decouple import config
 import discord, os
-from discord import app_commands
+from alunos.cadastrar import Cadastro
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -16,10 +16,11 @@ async def on_ready():
     await load_cogs(bot)
     await bot.get_cog('Dates').current_time.start()
 
+
 async def load_cogs(bot): 
     await bot.load_extension('manager')
     await bot.load_extension('tasks.dates')
-
+    
     for file in os.listdir("src/10-Discord_bot/alunos"):
         if file.endswith(".py"):
             await bot.load_extension(f'alunos.{file[:-3]}')
