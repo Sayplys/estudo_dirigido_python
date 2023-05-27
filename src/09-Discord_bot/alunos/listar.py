@@ -17,7 +17,7 @@ class Listar(commands.Cog):
             color=0xff4422
         )
 
-        with open("src/10-Discord_bot/alunos/alunos.txt", "r", encoding="UTF-8") as arquivo:
+        with open("src/09-Discord_bot/alunos/alunos.txt", "r", encoding="UTF-8") as arquivo:
             for linha in arquivo.readlines():
                 dados_da_linha = linha.strip().split(',')
                 embed.add_field(

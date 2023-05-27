@@ -20,7 +20,6 @@ class Manager(commands.Cog):
     async def on_message(self, message):
         if message.author.name == self.bot.user.name:
             return
-        print(f'{message.author.name} mandou mensagem no canal {message.channel.name}')
 
         if 'palavrão' in message.content:
             await message.channel.send(f'Por favor, {message.author}, não ofenda os demais usuários!')

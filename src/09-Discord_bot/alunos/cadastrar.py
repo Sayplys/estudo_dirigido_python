@@ -13,7 +13,7 @@ class Cadastro(ui.Modal, title="Cadastro de aluno"):
         await interaction.response.send_message('cadastando...')
         dados = f'{self.prontuario},{self.nome},{self.email}'
 
-        with open("src/10-Discord_bot/alunos/alunos.txt", 'r', encoding='UTF-8') as arquivo_r:
+        with open("src/09-Discord_bot/alunos/alunos.txt", 'r', encoding='UTF-8') as arquivo_r:
             lines = arquivo_r.readlines()
             if len(lines) != 0:
                 await self.check_occurrence(interaction, lines, dados)
@@ -45,7 +45,7 @@ class Cadastro(ui.Modal, title="Cadastro de aluno"):
                 break
 
     async def add_to_data_base(self, interaction, dados):
-        with open("src/10-Discord_bot/alunos/alunos.txt", 'a', encoding='UTF-8') as arquivo_a:
+        with open("src/09-Discord_bot/alunos/alunos.txt", 'a', encoding='UTF-8') as arquivo_a:
             arquivo_a.write( dados +"\n")
             await interaction.followup.send("Cadastrado com sucesso.")
 
